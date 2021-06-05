@@ -31,4 +31,7 @@ public class UsuarioService {
 	public Optional<Usuario> getUsuario(String cpf) {
 		return usuarioRepo.findById(cpf);
 	}
+	
+	
+	
 }
