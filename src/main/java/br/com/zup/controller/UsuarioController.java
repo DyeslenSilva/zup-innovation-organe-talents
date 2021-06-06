@@ -26,7 +26,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(path = "/usuarios", method =  RequestMethod.GET)
-	public ResponseEntity<List<Usuario>> getUsusarios(){
+	public ResponseEntity<Object> getUsusarios(){
 		return ResponseEntity.ok(usuarioService.getUsuarios());
 		
 	}
