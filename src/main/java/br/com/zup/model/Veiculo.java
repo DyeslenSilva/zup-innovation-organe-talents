@@ -6,6 +6,8 @@ import javax.persistence.Table;
 @Table
 public class Veiculo {
 
+	
+	
 	@Column
 	private String marca;
 	@Column
@@ -32,4 +34,6 @@ public class Veiculo {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+	
+	
 }
