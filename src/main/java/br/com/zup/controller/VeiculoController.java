@@ -12,12 +12,16 @@ import com.tarcisio.resources.FipeResource;
 import com.tarcisio.services.ModeloService;
 
 import br.com.zup.model.Veiculo;
+import br.com.zup.service.VeiculoService;
 
 @RestController
 public class VeiculoController {
 
 	@Autowired
 	private ModeloService modeloService;
+	
+	private VeiculoService veiculoService;
+	
 	
 	/*
 	 * import com.tarcisio.services.ModeloService;
@@ -27,6 +31,15 @@ public class VeiculoController {
 	 * para um determinado usuario no sistema.
 	 * 
 	 */
+	
+	
+	
+	@RequestMapping(path = "/veiculo" , method = RequestMethod.POST)
+	public ResponseEntity<Veiculo> cadastrarVeiculo(@PathVariable Veiculo veiculo){
+		veiculoService.cadastroVeiculo(veiculo);
+		return ResponseEntity.ok().build();
+	}
+	
 	
 	@RequestMapping(path = "/veiculo/{marca}", method = RequestMethod.GET)
 	public ResponseEntity<Veiculo> encontrarCarroPorMarca(@PathVariable String marca){
