@@ -17,7 +17,7 @@ public class Usuario {
 	@Column(unique = true)
 	private String cpf;
 	
-	
+
 	public boolean desativado;
 
 	public String getNome() {

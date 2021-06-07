@@ -10,7 +10,7 @@ public class ConsultaDeVeiculos {
 
 	
 	
-	public Response consultaTabelaFIPEPorModelos() throws IOException {
+	public Response fipeModelos() throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				Request request = new Request.Builder()
@@ -22,7 +22,7 @@ public class ConsultaDeVeiculos {
 	}
 	
 	
-	public Response consultaPorAnos() throws IOException {
+	public Response fipeAnos() throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				Request request = new Request.Builder()
@@ -34,7 +34,7 @@ public class ConsultaDeVeiculos {
 	}
 	
 	
-	public Response consultaPorCarros() throws IOException {
+	public Response fipeCarros() throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				Request request = new Request.Builder()
