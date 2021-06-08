@@ -2,23 +2,36 @@ package br.com.zup.model;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 
 @Table
 public class Usuario {
 	
 	@Column
+	@NotNull
+	@Size(min = 3, max = 30)
 	private String nome;
 	
 	@Column(unique = true)
+	@NotNull
+	@Size(min = 3, max = 50)
+	@Email(message = "Email Incorreto")
 	private String email;
+	
+	
 	@Column
+	@NotNull
+	@Size(min = 3, max = 11)
 	private String dataDeNascimento;
 	
 	@Column(unique = true)
+	@NotNull
+	@Size(min = 4,max = 20)
 	private String cpf;
 	
-
-	public boolean desativado;
 
 	public String getNome() {
 		return nome;
@@ -45,10 +58,5 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
-	public boolean isDesativado() {
-		return desativado;
-	}
-	public void setDesativado(boolean desativado) {
-		this.desativado = desativado;
-	}
+	
 }

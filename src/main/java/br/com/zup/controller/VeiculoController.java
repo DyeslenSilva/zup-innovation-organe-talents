@@ -1,7 +1,9 @@
 package br.com.zup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +35,16 @@ public class VeiculoController {
 	 */
 	
 	
-	
 	@RequestMapping(path = "/veiculo" , method = RequestMethod.POST)
-	public ResponseEntity<Veiculo> cadastrarVeiculo(@PathVariable Veiculo veiculo){
-		veiculoService.cadastroVeiculo(veiculo);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<Object> cadastrarVeiculo(@PathVariable Veiculo veiculo,
+			BindingResult brVeiculo){
+		if(brVeiculo.hasErrors()) {
+			return new ResponseEntity<>(brVeiculo, HttpStatus.BAD_REQUEST);
+		}else {
+			veiculoService.cadastroVeiculo(veiculo);
+			return new ResponseEntity<>(brVeiculo, HttpStatus.ACCEPTED);
+		}
 	}
-	
 	
 	@RequestMapping(path = "/veiculo/{marca}", method = RequestMethod.GET)
 	public ResponseEntity<Veiculo> encontrarCarroPorMarca(@PathVariable String marca){

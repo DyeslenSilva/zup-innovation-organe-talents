@@ -3,16 +3,23 @@ package br.com.zup.model;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Table
 public class Veiculo {
 
 	
 	
 	@Column
+	@NotNull
 	private String marca;
+	
 	@Column
+	@NotNull
 	private String modelo;
+	
 	@Column
+	@NotNull
 	private int ano;
 
 	

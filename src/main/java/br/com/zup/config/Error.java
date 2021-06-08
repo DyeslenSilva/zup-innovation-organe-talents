@@ -1,7 +1,5 @@
 package br.com.zup.config;
 
-import org.aspectj.bridge.AbortException;
-
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import javassist.NotFoundException;

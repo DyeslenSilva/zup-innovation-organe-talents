@@ -3,8 +3,10 @@ package br.com.zup.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +21,17 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	
 	@RequestMapping(path = "/saveUsuario", method = RequestMethod.POST)
-	public ResponseEntity<Object> salvarUsuario(@RequestBody Usuario usuario){
-		usuarioService.salvarUsuario(usuario);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<Object> cadastro(@RequestBody  Usuario usuario, BindingResult brUsuario){
+		if(brUsuario.hasErrors()) {
+			return new ResponseEntity<>(brUsuario, HttpStatus.BAD_REQUEST);
+		}else {
+			usuarioService.salvarUsuario(usuario);
+			return new ResponseEntity<Object>(brUsuario, HttpStatus.ACCEPTED);
+		}
 	}
+	
 	
 	@RequestMapping(path = "/usuarios", method =  RequestMethod.GET)
 	public ResponseEntity<Object> getUsusarios(){
