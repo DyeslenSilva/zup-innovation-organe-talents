@@ -23,7 +23,8 @@ public class UsuarioController {
 
 	
 	@RequestMapping(path = "/saveUsuario", method = RequestMethod.POST)
-	public ResponseEntity<Object> cadastro(@RequestBody  Usuario usuario, BindingResult brUsuario){
+	public ResponseEntity<Object> cadastro(@RequestBody  Usuario usuario, 
+			BindingResult brUsuario){
 		if(brUsuario.hasErrors()) {
 			return new ResponseEntity<>(brUsuario, HttpStatus.BAD_REQUEST);
 		}else {

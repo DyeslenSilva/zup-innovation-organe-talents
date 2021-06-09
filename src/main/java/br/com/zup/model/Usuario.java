@@ -32,7 +32,7 @@ public class Usuario {
 	@Size(min = 4,max = 20)
 	private String cpf;
 	
-
+	
 	public String getNome() {
 		return nome;
 	}
