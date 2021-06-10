@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.zup.model.UsuarioSistema;
+import br.com.zup.security.model.UsuarioSistema;
+
+
 
 @EnableWebSecurity
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
@@ -18,15 +20,19 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 	private DataSource dataSource;
 	private UsuarioSistema usuarioSistema;
 	
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+			.anyRequest().authenticated().and().httpBasic();	
+	}
+	
+	
+	//con
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-			.dataSource(dataSource)
-			.passwordEncoder(new BCryptPasswordEncoder())
-			.usersByUsernameQuery(usuarioSistema.getUsuarioPorlogin())
-			.authoritiesByUsernameQuery(usuarioSistema.getPermissaoUsuario())
-			.groupAuthoritiesByUsername(usuarioSistema.getPermissaoGrupo())
-			.rolePrefix(usuarioSistema.getPrefixo());
+		
 	}
 	
 	
